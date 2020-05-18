@@ -62,7 +62,7 @@ twdate <- c("民國202年5月23日","民國201年3月31日")
 str_extract_all(c("民國202年5月23日","民國201年3月31日"),"(?<=民國)[0-9]{3,4}(?=年)")
 str_extract(c("民國202年5月23日","民國201年3月31日"),"(?<=民國)[0-9]{3,4}(?=年)") 
 
-str_extract(c("民國202年5月23日","民國201年3月31日"),"(?<=民國)[0-9]{3,4}(?=年)") ->needtochangeword
+str_extract(c("民國202年5月23日","民國201年3月31日"),"(?<=ㄘㄧ 民國)[0-9]{3,4}(?=年)") ->needtochangeword
 as.integer(needtochangeword) + 1911 -> changeword
 str_replace(twdate,c("民國202","民國201"),as.character(changeword)) ->twdate
 lubridate::ymd(twdate) ->twdate

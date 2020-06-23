@@ -1,7 +1,7 @@
 ---
-title: "06-19"
+title: "06-23"
 author: "廖清祥"
-date: "6/19/2020"
+date: "6/23/2020"
 output: html_document
 ---
 
@@ -29,42 +29,38 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-```{r}
-library(stringr)
-# 先執行此行輸入學號
-readline(prompt = "請輸入你的學號") -> studentId 
 
-# 之後才執行以下程式
-if(
-  str_detect(studentId,'^[43](1[01][0-9]|9[0-9])[0-9]{5}$',negate=T) # condition: 是否輸入學號正確？
-) {
-  warning("你所輸入的學號不正確")
+```{r}
+readline(prompt = "n") -> n
+as.integer(n) -> n
+
+conditionExpression_outcome=
+  ifelse(n %% 2==0, "even", "odd") 
+
+switch(
+  conditionExpression_outcome,
+  "even"={fvalue <- n/2}, # 23偶數
+  "odd"=fvalue <- -(n+1)/2, # 奇數；只有一行指令可省略{}
+  warning("n要整數喔")  
+)
+
+print(fvalue)
+```
+
+```{r}
+minifun <- function(){
+  lubridate:: now()
 }
-
-str_view(studentId,'[43](1[01][0-9]|9[0-9])[0-9]{5}')
+minifun()
 ```
 
 ```{r}
-if(!require(lubridate)){ # condition: 是否「沒安裝lubridate」？
-  install.packages("lubridate")
-}
-lubridate::ymd_hms("2020-07-01 13:00:00 GMT")
+grades <- c(52, 77, 60, 88, 90 , 47)
+
+ifelse(grades >= 60, "及格", "不及格")
 ```
 
 ```{r}
-demand <- # 創造一個物件叫demand
-  function(p){ # 定義這個物件為函數
-    q_d <- 10-5*p # 小心是5*p, 不能寫5p
-  }
-demand_return(1.2)
-```
 
-```{r}
-demand_return <- 
-  function(p){
-    q_d <- 10-5*p
-    return(q_d)
-  }
-# 印在螢幕，但Global Environment並不會有q_d
-demand_return(1.2)
+
 ```
